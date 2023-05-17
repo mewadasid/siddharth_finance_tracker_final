@@ -1,0 +1,18 @@
+.formWrapper {
+    color: #ff0000;
+    border: 1px solid #ff0000;
+    font-size: 17px;
+}
+
+.fieldError {
+    color: #ff0000;
+    font-size: 16px;
+}
+
+.userform {
+    width: 50%;
+    margin: 8px auto;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+    border-radius: 10px;
+}
