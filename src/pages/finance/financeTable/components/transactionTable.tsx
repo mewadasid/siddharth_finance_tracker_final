@@ -111,9 +111,16 @@ export default function Transactiontable() {
             </div>
           </div>
           <Tablecomponent transactions={transactions} />
-          {Object.keys(groupData).map((item) => {
-            return <Tablecomponent transactions={groupData[item]} />;
-          })}
+
+          {Object.keys(groupData).length > 0 &&
+            Object.keys(groupData).map((item) => {
+              return (
+                <Tablecomponent
+                  transactions={groupData[item]}
+                  groupVal={groupVal}
+                />
+              );
+            })}
         </div>
       ) : (
         <span>No data Found</span>

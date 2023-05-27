@@ -1,3 +1,8 @@
+export const table_heading = {
+  tran_note: "Transaction Note",
+  tran_date: "Transaction Date",
+  tran_amount: "Transaction Amount",
+};
 export const monthOpiton = [
   { value: "", key: "--select--" },
   { value: "JAN 2023", key: "JAN 2023" },

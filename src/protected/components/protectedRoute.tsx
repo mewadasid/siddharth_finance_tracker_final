@@ -5,6 +5,7 @@ type ProtectedType = {
   ispublic: boolean;
   Cmp: any;
 };
+
 export default function Protected({ Cmp, ispublic }: ProtectedType) {
   const cookie = new Cookies();
   const token = cookie.get("token");

@@ -1,6 +1,5 @@
-import { Route, Navigate } from "react-router-dom";
-import Protected from "../protected/components/protectedRoute";
-import { lazy } from "react";
+import { Navigate } from "react-router-dom";
+import React, { lazy } from "react";
 
 const Displayuser = lazy(
   () => import("../pages/finance/financeTable/components/displayUser")
@@ -8,7 +7,6 @@ const Displayuser = lazy(
 const Edituser = lazy(
   () => import("../pages/finance/financeTable/components/editUser")
 );
-
 const RegisterForm = lazy(
   () => import("../pages/finance/userAuth/registerUse")
 );
@@ -20,37 +18,59 @@ const AddTransaction = lazy(
   () => import("../pages/finance/transactionForm/index")
 );
 
-const routes = (
-  <Route path="/">
-    <Route
-      path="login"
-      element={<Protected ispublic={true} Cmp={<Loginform />} />}
-    ></Route>
-    <Route
-      path="register"
-      element={<Protected ispublic={true} Cmp={<RegisterForm />} />}
-    ></Route>
-    <Route path="displayData">
-      <Route
-        path=""
-        element={<Protected ispublic={false} Cmp={<TransactionShow />} />}
-      ></Route>
-      <Route
-        path="createTransaction"
-        element={<Protected ispublic={false} Cmp={<AddTransaction />} />}
-      ></Route>
-      <Route
-        path=":id"
-        element={<Protected ispublic={false} Cmp={<Displayuser />} />}
-      ></Route>
-      <Route
-        path="edit/:id"
-        element={<Protected ispublic={false} Cmp={<Edituser />} />}
-      ></Route>
-    </Route>
-    <Route path="" element={<Navigate to={"/displayData"}></Navigate>}></Route>
-    <Route path="/*" element={<h1>404 Error</h1>}></Route>
-  </Route>
-);
+export type routeType = {
+  path: string;
+  element?: React.JSX.Element;
+  protected?: boolean;
+  further?: Array<routeType>;
+};
 
-export default routes;
+export const routeMapList: routeType = {
+  path: "/",
+  further: [
+    {
+      path: "",
+      element: <Navigate to={"displayData"}></Navigate>,
+    },
+    {
+      path: "login",
+      element: <Loginform />,
+      protected: false,
+    },
+    {
+      path: "register",
+      element: <RegisterForm />,
+      protected: false,
+    },
+
+    {
+      path: "displayData",
+      further: [
+        {
+          path: "",
+          element: <TransactionShow />,
+          protected: true,
+        },
+        {
+          path: "createTransaction",
+          element: <AddTransaction />,
+          protected: true,
+        },
+        {
+          path: ":id",
+          element: <Displayuser />,
+          protected: true,
+        },
+        {
+          path: "edit/:id",
+          element: <Edituser />,
+          protected: true,
+        },
+      ],
+    },
+    {
+      path: "/*",
+      element: <h1>404 Error</h1>,
+    },
+  ],
+};
