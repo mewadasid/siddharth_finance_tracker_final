@@ -271,21 +271,26 @@ export default function Tablecomponent(props: {
           <thead className="table-dark">
             <tr>
          {Object.keys(table_heading).map((key)=>{
-          return (
-           props.transactions.length > 1 && key!=="tran_receipt" && key!=="view" && key!=="edit" &&key!=="delete"  ?  
-            <th key={key} onClick={()=> sorting(key)}>
-              {table_heading[key]}
-               {sortOrder.current === "asc" &&
-                  lastSortkey === key ? (
-                    <i className="fa-sharp fa-solid fa-caret-up mx-3"></i>
-                  ) : sortOrder.current === "desc" &&
+        
+            return (
+             props.transactions.length > 1 && key!=="tran_receipt" && key!=="view" && key!=="edit" &&key!=="delete"  ?  
+             
+              <th  key={key} onClick={()=> sorting(key)}>
+                <div className="t_head">
+                
+                {table_heading[key]}
+                 {sortOrder.current === "asc" &&
                     lastSortkey === key ? (
-                    <i className="fa-sharp fa-solid fa-caret-down mx-3"></i>
-                  ) : (
-                    <i className="fa-solid fa-sort"></i>
-                  )}
-              </th> : <th scope="col" key={key}>{table_heading[key]}</th>
-          )
+                      <i className="fa-sharp fa-solid fa-caret-up mx-3"></i>
+                    ) : sortOrder.current === "desc" &&
+                      lastSortkey === key ? (
+                      <i className="fa-sharp fa-solid fa-caret-down mx-3"></i>
+                    ) : (
+                      <i className="fa-solid fa-sort"></i>
+                    )}
+                </div>
+                </th> : <th scope="col" key={key}>{table_heading[key]}</th>
+            )
          })}
           
             </tr>
