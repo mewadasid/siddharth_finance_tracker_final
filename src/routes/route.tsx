@@ -20,7 +20,7 @@ const AddTransaction = lazy(
 
 export type routeType = {
   path: string;
-  element?: React.JSX.Element;
+  element?: JSX.Element;
   protected?: boolean;
   further?: Array<routeType>;
 };

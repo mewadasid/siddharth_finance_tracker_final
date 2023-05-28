@@ -6,7 +6,7 @@ import {
   transactionType,
   fromToAccount,
   fileConvert,
-} from "../../../utils/constant";
+} from "../../../../utils/constant";
 import "../css/formStyle.css";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";

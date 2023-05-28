@@ -10,3 +10,8 @@ export interface TransactionType {
   tran_date: string;
   tran_id?: number;
 }
+
+
+export interface Table_heading{
+   [key: string]: string;
+}

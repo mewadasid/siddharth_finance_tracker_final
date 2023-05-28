@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { deleteTransaction } from "../../redux_duck/transactionSlice";
 import { TransactionType } from "../../../../model/transactionInterface";
+import { table_heading } from "../../../../utils/constant";
 
 export default function Tablecomponent(props: {
   transactions: TransactionType[];
@@ -269,118 +270,24 @@ export default function Tablecomponent(props: {
         <table className="table main_table">
           <thead className="table-dark">
             <tr>
-              <th scope="col" onClick={() => sorting("tran_date")}>
-                <div className="t_head">
-                  Transaction Date&nbsp;&nbsp;
-                  {sortOrder.current === "asc" &&
-                  lastSortkey === "tran_date" ? (
+         {Object.keys(table_heading).map((key)=>{
+          return (
+           props.transactions.length > 1 && key!=="tran_receipt" && key!=="view" && key!=="edit" &&key!=="delete"  ?  
+            <th key={key} onClick={()=> sorting(key)}>
+              {table_heading[key]}
+               {sortOrder.current === "asc" &&
+                  lastSortkey === key ? (
                     <i className="fa-sharp fa-solid fa-caret-up mx-3"></i>
                   ) : sortOrder.current === "desc" &&
-                    lastSortkey === "tran_date" ? (
+                    lastSortkey === key ? (
                     <i className="fa-sharp fa-solid fa-caret-down mx-3"></i>
                   ) : (
                     <i className="fa-solid fa-sort"></i>
                   )}
-                </div>
-              </th>
-
-              <th
-                scope="col"
-                onClick={() =>
-                  props.groupVal === "tran_month" ? null : sorting("tran_month")
-                }
-              >
-                <div className="t_head">
-                  Transaction Month&nbsp;
-                  {sortOrder.current === "asc" &&
-                  lastSortkey === "tran_month" ? (
-                    <i className="fa-sharp fa-solid fa-caret-up mx-3"></i>
-                  ) : sortOrder.current === "desc" &&
-                    lastSortkey === "tran_month" ? (
-                    <i className="fa-sharp fa-solid fa-caret-down mx-3"></i>
-                  ) : (
-                    <i className="fa-solid fa-sort"></i>
-                  )}
-                </div>
-              </th>
-
-              <th scope="col" onClick={() => sorting("tran_type")}>
-                <div className="t_head">
-                  Transaction Type&nbsp;&nbsp;
-                  {sortOrder.current === "asc" &&
-                  lastSortkey === "tran_type" ? (
-                    <i className="fa-sharp fa-solid fa-caret-up mx-3"></i>
-                  ) : sortOrder.current === "desc" &&
-                    lastSortkey === "tran_type" ? (
-                    <i className="fa-sharp fa-solid fa-caret-down mx-3"></i>
-                  ) : (
-                    <i className="fa-solid fa-sort"></i>
-                  )}
-                </div>
-              </th>
-
-              <th scope="col" onClick={() => sorting("tran_from")}>
-                <div className="t_head">
-                  Transaction From&nbsp;&nbsp;
-                  {sortOrder.current === "asc" &&
-                  lastSortkey === "tran_from" ? (
-                    <i className="fa-sharp fa-solid fa-caret-up mx-3"></i>
-                  ) : sortOrder.current === "desc" &&
-                    lastSortkey === "tran_from" ? (
-                    <i className="fa-sharp fa-solid fa-caret-down mx-3"></i>
-                  ) : (
-                    <i className="fa-solid fa-sort"></i>
-                  )}
-                </div>
-              </th>
-
-              <th scope="col" onClick={() => sorting("tran_to")}>
-                <div className="t_head">
-                  Transaction To&nbsp;&nbsp;
-                  {sortOrder.current === "asc" && lastSortkey === "tran_to" ? (
-                    <i className="fa-sharp fa-solid fa-caret-up mx-3"></i>
-                  ) : sortOrder.current === "desc" &&
-                    lastSortkey === "tran_to" ? (
-                    <i className="fa-sharp fa-solid fa-caret-down mx-3"></i>
-                  ) : (
-                    <i className="fa-solid fa-sort"></i>
-                  )}
-                </div>
-              </th>
-
-              <th scope="col" onClick={() => sorting("tran_amount")}>
-                <div className="t_head">
-                  Transaction Amount&nbsp;&nbsp;
-                  {sortOrder.current === "asc" &&
-                  lastSortkey === "tran_amount" ? (
-                    <i className="fa-sharp fa-solid fa-caret-up mx-3"></i>
-                  ) : sortOrder.current === "desc" &&
-                    lastSortkey === "tran_amount" ? (
-                    <i className="fa-sharp fa-solid fa-caret-down mx-3"></i>
-                  ) : (
-                    <i className="fa-solid fa-sort"></i>
-                  )}
-                </div>
-              </th>
-
-              <th scope="col">Receipt</th>
-              <th scope="col" onClick={() => sorting("tran_note")}>
-                <div className="t_head">
-                  Transaction Note&nbsp;&nbsp;
-                  {sortOrder.current === "asc" &&
-                  lastSortkey === "tran_note" ? (
-                    <i className="fa-sharp fa-solid fa-caret-up mx-3"></i>
-                  ) : sortOrder.current === "desc" &&
-                    lastSortkey === "tran_note" ? (
-                    <i className="fa-sharp fa-solid fa-caret-down mx-3"></i>
-                  ) : (
-                    <i className="fa-solid fa-sort"></i>
-                  )}
-                </div>
-              </th>
-              <th scope="col">View</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
+              </th> : <th scope="col" key={key}>{table_heading[key]}</th>
+          )
+         })}
+          
             </tr>
           </thead>
           <tbody>

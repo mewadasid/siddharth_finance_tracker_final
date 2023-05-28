@@ -1,7 +1,18 @@
-export const table_heading = {
-  tran_note: "Transaction Note",
+import { Table_heading } from "../model/transactionInterface";
+
+export const table_heading :Table_heading = {
   tran_date: "Transaction Date",
+  tran_month: "Transaction Month",
+  tran_type: "Transaction Type",
+  tran_from: "Transaction From",
+  tran_to: "Transaction To",
   tran_amount: "Transaction Amount",
+  tran_receipt: "Transaction Receipt",
+  tran_note: "Transaction Note",
+  view :"View",
+  edit : "Edit ",
+  delete : "Delete"
+
 };
 export const monthOpiton = [
   { value: "", key: "--select--" },

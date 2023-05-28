@@ -51,7 +51,10 @@ export default function Transactiontable() {
             groupedMap[key[group]] = [key];
           }
         }
-        setGroupData(groupedMap ?? {});
+        setGroupData(groupedMap);
+      }
+      else{
+        setGroupData({});
       }
     } else {
       if (typeof e === "string") {
@@ -62,7 +65,10 @@ export default function Transactiontable() {
             groupedMap[key[e]] = [key];
           }
         }
-        setGroupData(groupedMap ?? {});
+        setGroupData(groupedMap);
+      }
+      else{
+        setGroupData({});
       }
     }
   };
@@ -116,6 +122,7 @@ export default function Transactiontable() {
             Object.keys(groupData).map((item) => {
               return (
                 <Tablecomponent
+                key={item}
                   transactions={groupData[item]}
                   groupVal={groupVal}
                 />
